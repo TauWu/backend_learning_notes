@@ -1,4 +1,5 @@
 // 生产者消费者模型
+// Work On Linux: g++ product_customer.cpp -o product_customer.out && ./product_customer.out
 #include "iostream"
 #include <unistd.h>
 
