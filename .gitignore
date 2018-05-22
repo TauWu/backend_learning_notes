@@ -1,0 +1,15 @@
+# cpp编译输出
+*.out
+
+# Python编译输出
+*.pyc
+__pycache__/
+
+# Golang编译输出
+*.x
+
+# VSCode配置
+.vscode/
+
+# 日志输出
+*.log
