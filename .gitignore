@@ -1,4 +1,4 @@
-# cpp编译输出
+# C++编译输出
 *.out
 
 # Python编译输出
@@ -7,6 +7,9 @@ __pycache__/
 
 # Golang编译输出
 *.x
+
+# JAVA编译输出
+*.class
 
 # VSCode配置
 .vscode/
