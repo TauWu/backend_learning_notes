@@ -7,10 +7,12 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
 
 ## 项目目录
 
-- [ ] Python学习
-    - [ ] numpy笔记
-    - [ ] Python基础知识
-- [ ] Golang学习
+- [ ] 高级语言学习
+    - [ ] Python学习
+        - [ ] numpy笔记
+        - [ ] Python基础知识
+    - [ ] Golang学习
+    - [ ] Java学习
 - [ ] 计算机基础
     - [ ] 计算机组成原理
     - [ ] 数据结构
