@@ -10,6 +10,8 @@ __pycache__/
 
 # JAVA编译输出
 *.class
+*.jar
+class/
 
 # VSCode配置
 .vscode/
