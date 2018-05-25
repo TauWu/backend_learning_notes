@@ -35,7 +35,7 @@ set global max_prepared_stmt_count=1000000;
 - 治本方案
 检查代码中带占位符`？`的SQL执行语句中，对于创建出的stmt和查询连接等是否手动关闭。如果均合理关闭，可以对底层调用的第三方、标准库中的代码进行检查，在使用prepare语句的时候，是否有做关闭处理（Go在1.4版本前的标准库中存在过这种隐患。=>[传送门](https://studygolang.com/articles/1795)）
 
-## 源码分析
+## Go中sqlx源码分析
 以本次出现问题的Go为例，使用到了sqlx的第三方库。当前项目中，select操作使用到的方法是`Select`（针对列表数据）和`Get`（针对单行数据），update和insert使用到的方式是`Exec`。
 以Exec为例，因为存在
 ```go
@@ -113,9 +113,55 @@ if err1 == nil {
     }
 
 ```
+不仅在此处的影响，在手动调用Go标准库中的`Prepare()`方法的时候也需要考虑这些问题，代码参考如下：
+```go
+    stmt, err := db.Prepare(SQL)
+    // 运行完毕后执行stmt的关闭操作
+    defer stmt.Close()
+    res, err := stmt.Exec(SQL)    
+```
+最后参考一下sqlx中Select方法中的`Close()`的内容
+```go
+func (rs *Rows) Close() error {
+	return rs.close(nil)
+}
+
+func (rs *Rows) close(err error) error {
+	rs.closemu.Lock()
+	defer rs.closemu.Unlock()
+
+	if rs.closed {
+		return nil
+	}
+	rs.closed = true
+
+	if rs.lasterr == nil {
+		rs.lasterr = err
+	}
+
+	err = rs.rowsi.Close()
+    
+    if fn := rowsCloseHook(); fn != nil {
+		fn(rs, &err)
+    }
+    
+	if rs.cancel != nil {
+		rs.cancel()
+    }
+    
+    // 关闭Statement
+	if rs.closeStmt != nil {
+		rs.closeStmt.Close()
+    }
+    
+    // 释放连接
+	rs.releaseConn(err)
+	return err
+}
+```
 
 ## 选择PreparedStatement的原因
-- 代码的可读性和可维护性
+- 一、**代码的可读性和可维护性**
     - 虽然用PreparedStatement来代替Statement会使代码多出几行,但这样的代码无论从可读性还是可维护性上来说，都比直接用Statement的代码要好
 ```java
     // 方法1：拼接SQL
@@ -128,14 +174,14 @@ if err1 == nil {
     perstmt.setString(4,var4);
     perstmt.executeUpdate();
 ```
-- 尽最大可能提高性能
+- 二、**尽最大可能提高性能**
     - 每一种数据库都会尽最大努力对预编译语句提供最大的性能优化，因为**预编译语句有可能被重复调用**。所以语句在被DB的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中（相当于一个函数）就会得到执行。这并不是说只有一个Connection中多次执行的预编译语句被缓存，而是对于整个DB中，只要预编译的语句语法和缓存中匹配，那么在任何时候就可以不需要再次编译而可以直接执行。而statement的语句中，即使是相同一操作，而由于每次操作的数据不同所以使整个语句相匹配的机会极小,几乎不太可能匹配。比如：
     ```sql
     　　insert into tb_name(col1,col2) values('11','22');
     　　insert into tb_name(col1,col2) values('11','23');
     ```
     - 即使是相同操作但因为数据内容不一样，所以整个个语句本身不能匹配，没有缓存语句的意义。事实是没有数据库会对普通语句编译后的执行代码缓存。当然并不是所有预编译语句都一定会被缓存，数据库本身会用一种策略，比如使用频度等因素来决定什么时候不再缓存已有的预编译结果。以保存有更多的空间存储新的预编译语句。
-- 提高了安全性，阻止SQL注入
+- 三、**提高了安全性，阻止SQL注入**
     - 对于
     ```java
     　　Stringsql="select * from tb_name where name = '"+varname+"' and passwd = '"+varpasswd+"'";
