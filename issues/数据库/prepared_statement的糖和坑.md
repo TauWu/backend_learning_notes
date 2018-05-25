@@ -12,9 +12,10 @@ mysql_stmt_prepare failed! error(1461) Can't create more than max_prepared_stmt_
 show global status like 'com_stmt%';
 ```
 查询到的内容如下：
+
 Variable_name | Value 
 --- | ---
-Com_stmt_execute |1
+Com_stmt_execute | 1
 Com_stmt_close |1
 Com_stmt_fetch |0
 Com_stmt_prepare | 1
