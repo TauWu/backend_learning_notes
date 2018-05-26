@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 # 冒泡排序算法
 
+# UnSortedList = [
+#     12, 13, 14, 15,
+#     1,  1,  2,  20,
+#     58, 27, 41, 33
+# ]
+
 UnSortedList = [
-    12, 13, 14, 15,
-    1,  1,  2,  20,
-    58, 27, 41, 33
+    5, 2, 7, 4, 6, 3, 1
 ]
+
 
 def bubble_sort(unsorted_list):
     '''bubble_sort
