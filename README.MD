@@ -8,20 +8,28 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
 ## 项目目录
 - [ ] 高级语言学习
     - [ ] Python学习
-        - [ ] numpy笔记
-        - [ ] Python基础知识
+        - [ ] [numpy笔记](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记)
+        - [ ] [Python基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识)
     - [ ] Golang学习
     - [ ] Java学习
-        - [ ] Java基础知识
+        - [ ] [Java基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Java学习/Java基础知识)
 - [ ] 计算机基础
     - [ ] 计算机组成原理
     - [ ] 数据结构
+        - [x] [绪论](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/绪论.md)
+        - [x] [线性表](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/线性表.md)
+        - [x] [栈与队列](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/栈与队列.md)
+        - [x] [串](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/串.md)
+        - [x] [数组与广义表](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/数组与广义表.md)
+        - [x] [树与二叉树](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/树与二叉树.md)
+        - [ ] [图](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/图.md)
+        - [ ] 内部排序算法 
     - [x] 操作系统
-        - [x] 操作系统概述
-        - [x] 进程管理
-        - [x] 内存管理
-        - [x] 文件管理
-        - [x] 输入输出（I/O）管理
+        - [x] [操作系统概述](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/操作系统概述.md)
+        - [x] [进程管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/进程管理.md)
+        - [x] [内存管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/内存管理.md)
+        - [x] [文件管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/文件管理.md)
+        - [x] [输入输出（I/O）管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/输入输出（I/O）管理.md)
     - [ ] 计算机网络
 - [ ] 数学基础
     - [ ] 微积分
