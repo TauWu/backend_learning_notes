@@ -31,3 +31,4 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
     - [ ] 几何学
 - [x] issues`实际应用场景中遇到的问题笔记`
     - [x] [prepared_statement的糖和坑](https://github.com/TauWu/review_note/tree/master/issues/数据库/prepared_statement的糖和坑.md)
+    - [x] [链家上海Java工程师面经](https://github.com/TauWu/review_note/tree/master/issues/面经/2018年5月29日链家上海Java工程师.md)
