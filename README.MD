@@ -9,7 +9,7 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
 - [ ] 高级语言学习
     - [ ] Python学习
         - [ ] [numpy笔记](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记)
-        - [ ] [Python基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识)
+        - [ ] [Python基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/README.MD)
     - [ ] Golang学习
     - [ ] Java学习
         - [ ] [Java基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Java学习/Java基础知识)
