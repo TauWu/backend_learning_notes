@@ -48,22 +48,23 @@ def insert_once_half(sorted_list, elem):
         sorted_list：已排序列表
     '''
     low = 0
-    high = len(sorted_list) - 1
-    flag = True
+    high = len(sorted_list)
 
-    while flag:
-        print(high, low)
-        m = int((high - low) / 2)
-        if m <= 0:
+    while True:
+        m = int((high - low) / 2) + low
+        if high - low <= 1:
             break
-        if sorted_list[m] > elem:
+        if sorted_list[m] >= elem:
             high = m
             continue
-        else:
+        elif sorted_list[m] < elem:
             low = m
             continue
-        
-    print("DEBUG:", sorted_list)
+        else:
+            raise RuntimeError("运行错误")
+
+    sorted_list.insert(m+1, elem)
+    print("DEBUG:", high, low, m+1, sorted_list)
     return sorted_list
 
 def insert_sort_half(unsorted_list):
@@ -80,5 +81,6 @@ def insert_sort_half(unsorted_list):
 
 if __name__ == "__main__":
     print(
-        insert_once_half([1,2,3,4,5,6,7,8,9,10,11,12,13], 7)
+        insert_sort_half([0,4,1,6,6,8,1,16,27,18,7,2,22,1,32]),
+        insert_sort([0,4,1,6,6,8,1,16,27,18,7,2,22,1,32])
     )
