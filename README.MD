@@ -24,7 +24,7 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
         - [x] [树与二叉树](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/树与二叉树.md)
         - [x] [图](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/图.md)
         - [x] [查找](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/查找.md)
-        - [ ] [内部排序算法](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/内部排序.md) 
+        - [x] [内部排序算法](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/内部排序.md) 
     - [x] 操作系统
         - [x] [操作系统概述](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/操作系统概述.md)
         - [x] [进程管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/进程管理.md)
