@@ -4,3 +4,21 @@
 # 引用资料
 [1] Python Cookbook 3rd Edition Documentation，http://python3-cookbook.readthedocs.io/zh_CN/latest/
 [2] Python Cookbook, 3rd edition, by David Beazley and Brian K. Jones (O’Reilly). Copyright 2013 David Beazley and Brian Jones, 978-1-449-34037-7.
+
+# 目录
+
+- [x] [数据结构和算法](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/1_datastruct.py)
+- [ ] [字符串和文本](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/2_strings.py)
+- [ ] 数字日期和时间
+- [ ] 迭代器与生成器
+- [ ] 文件与IO
+- [ ] 数据编码和处理
+- [ ] 函数
+- [ ] 类与对象
+- [ ] 元编程
+- [ ] 模块与包
+- [ ] 网络与web编程
+- [ ] 并发编程
+- [ ] 脚本编程与系统管理
+- [ ] 测试、调试和异常
+- [ ] C语言扩展
