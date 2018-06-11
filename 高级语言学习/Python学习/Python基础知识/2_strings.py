@@ -111,3 +111,5 @@ print(s.lstrip('H'))
 s = 'Hello'
 print(s.center(19,'*'))
 print(s.ljust(19,'?'))
+
+#TODO 文字匹配模块代码
