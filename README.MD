@@ -30,7 +30,7 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
         - [x] [进程管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/进程管理.md)
         - [x] [内存管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/内存管理.md)
         - [x] [文件管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/文件管理.md)
-        - [x] [输入输出（I/O）管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/输入输出（I/O）管理.md)
+        - [x] [输入输出（I/O）管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/输入输出（IO）管理.md)
     - [ ] 计算机网络
 - [ ] 数学基础
     - [ ] 微积分
