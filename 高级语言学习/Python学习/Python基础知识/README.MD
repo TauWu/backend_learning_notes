@@ -11,7 +11,7 @@
 - [ ] [字符串和文本](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/2_strings.py)
 - [ ] 数字日期和时间
 - [ ] 迭代器与生成器
-- [ ] 文件与IO
+- [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
 - [ ] 数据编码和处理
 - [ ] 函数
 - [ ] 类与对象
