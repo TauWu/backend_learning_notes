@@ -12,7 +12,7 @@
 - [ ] 数字日期和时间
 - [ ] 迭代器与生成器
 - [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
-- [ ] 数据编码和处理
+- [x] [数据编码和处理](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/5_file_io.md)
 - [ ] 函数
 - [ ] 类与对象
 - [ ] 元编程
