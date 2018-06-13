@@ -10,9 +10,9 @@
 - [x] [数据结构和算法](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/1_datastruct.py)
 - [x] [字符串和文本](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/2_strings.py)
 - [x] [数字日期和时间](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/3_nums_datetime.py)
-- [ ] 迭代器与生成器
-- [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
-- [x] [数据编码和处理](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/5_file_io.md)
+- [x] [迭代器与生成器](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
+- [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/5_file_io.md)
+- [ ] 数据编码和处理
 - [ ] 函数
 - [ ] 类与对象
 - [ ] 元编程
