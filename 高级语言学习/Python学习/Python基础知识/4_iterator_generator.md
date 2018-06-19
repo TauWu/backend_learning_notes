@@ -261,7 +261,7 @@ for x in flatten(items):
 ```
 ignore_type 主要是防止将可被迭代的类似字符串的类型继续迭代。 yield from 在协程和并发编程中会有更多的应用。
 
-###　迭代器替代 while 实现无限循环
+### 迭代器替代 while 实现无限循环
 常见的死循环代码为：
 ```py
 def foo():
