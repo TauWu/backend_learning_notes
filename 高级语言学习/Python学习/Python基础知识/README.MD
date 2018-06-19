@@ -13,8 +13,8 @@
 - [x] [迭代器与生成器](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
 - [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/5_file_io.md)
 - [x] [数据编码和处理](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/6_data_coding.md)
-- [ ] [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/7_function.md)
-- [ ] 类与对象
+- [x] [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/7_function.md)
+- [ ] [类与对象](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/8_class_object.md)
 - [ ] 元编程
 - [ ] 模块与包
 - [ ] 网络与web编程
