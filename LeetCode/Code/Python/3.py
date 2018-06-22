@@ -9,25 +9,27 @@
 
 def length_of_longest_substring(s):
     max_length = 0
-    # sub_str_list = list()
-    for idx in range(0, len(s)):
-        sub_str_list = list()
-        length = 0
+    length = 0
+    substring = list()
+    for ele in s:
         
-        while True:
-            try:
-                if s[length+idx] not in sub_str_list:
-                    sub_str_list.append(s[length+idx])
-                    length += 1
-                else:
-                    break
+        pos = 0
+        try:
+            pos = substring.index(ele)
+            
+        except Exception:
+            substring.append(ele)
+            length += 1
 
-            except Exception:
-                break
-
-            if max_length < length:
-                max_length = length    
+        else:
+            substring = substring[pos+1:]
+            substring.append(ele)
+            length = len(substring)
+            
+        if length > max_length:
+            max_length = length
+    
     return max_length
-
+                        
 if __name__ == "__main__":
-    print(length_of_longest_substring("c"))
+    print(length_of_longest_substring("bccbaddccasdsaw"))
