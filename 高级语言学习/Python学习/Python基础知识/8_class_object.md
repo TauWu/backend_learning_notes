@@ -2,8 +2,44 @@
 ## 类和对象
 
 ### 改变对象的字符串显示
+改变一个实例的字符串表示可以通过重定义它的 \_\_str()\_\_ 和 \_\_repr()\_\_ 方法。
+```py
+class Pair:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return '({0.x!r}, {0.y!r})'.format(self)
+
+    def __str__(self):
+        return 'Pair({0.x!s}, {0.y!s})'.format(self)
+```
+- \_\_str()\_\_ 体现:print() 函数
+- \_\_repr()\_\_ 体现:交互式解释器内容
 
 ### 自定义字符串的格式化
+```py
+_formats = {
+    'ymd' : '{d.year}-{d.month}-{d.day}',
+    'mdy' : '{d.month}/{d.day}/{d.year}',
+    'dmy' : '{d.day}/{d.month}/{d.year}'
+    }
+
+class Date:
+    def __init__(self, y, m, d):
+        self.y = y
+        self.m = m
+        self.d = d
+
+    def __format__(self, code):
+        if code == '':
+            code = 'ymd'
+        fmt = _formats[code]
+        return fmt.format(d=self)
+
+d = Date(2018, 12, 31)
+```
 
 ### 让对象支持上下文管理协议
 
