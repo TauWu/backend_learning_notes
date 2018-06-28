@@ -286,18 +286,67 @@ class MaxSized(Descriptor):
         self.name = name
         for k, v in opts.items:
             setattr(self, k, v)
-            
 ```
 
 ### 实现自定义容器
+`略`没啥意义
 
 ### 属性的代理访问
+代理是一种编程模式，它将某个操作转移给另外一个对象来实现。最简单的形式如下：
+```py
+class A:
+    def spam(self, x):
+        pass
+    def foo(self):
+        pass
+
+class B:
+    def __init__(self):
+        self._a = A()
+    
+    def spam(self, x):
+        return self._a.spam(x)
+    def foo(self):
+        return self._a.foo()
+```
+如果某一个类中有很多方法需要代理，可以使用 \_\_getattr()\_\_ 方法处理：
+```py
+class B2:
+    def __init__(self):
+        self._a = A
+
+    def bar(self):
+        pass
+
+    def __getattr__(self, name):
+        return getattr(self._a, name)
+```
+代理类一般是类继承的替代方法。另外 \_\_getattr()\_\_ 方法只会对暴露在外部的公共方法进行代理，而不会代理 **私有和保护** 的方法。
 
 ### 在类中定义多个构造器
+```py
+import time
+
+class Date:
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+    @classmethod
+    def today(cls):
+        t = time.localtime()
+        return cls(t.tm_year, t.tm_month, t.tm_day)
+
+a = Date(2012, 12, 21)
+b = Data.today()
+```
+类方法的一个主要用途就是定义多个构造器，接收 class 作为第一个参数 cls。这个类被用来创建并返回最终的实例。
 
 ### 创建不调用 init 方法的实例
+`略`没啥意义
 
 ### 利用 Mixins 扩展类的功能
+
 
 ### 实现状态对象或者状态机
 
