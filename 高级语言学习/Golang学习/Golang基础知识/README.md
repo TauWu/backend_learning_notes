@@ -7,7 +7,7 @@
 ## 笔记目录
 
 - 1. [基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/1_基础知识.md)
-- 2. 基本结构和基本数据类型
+- 2. [基本结构和基本数据类型](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/2_基本结构和基本数据类型.md)
 - 3. 控制语句
 - 4. 函数
 - 5. 数组和切片
