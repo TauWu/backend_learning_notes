@@ -10,7 +10,7 @@
 - 2. [基本结构和基本数据类型](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/2_基本结构和基本数据类型.md)
 - 3. [控制结构](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/3_控制结构.md)
 - 4. [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/4_函数.md)
-- 5. 数组和切片
+- 5. [数组与切片](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/5_数组与切片.md)
 - 6. Map
 - 7. 包
 - 8. 结构和方法
