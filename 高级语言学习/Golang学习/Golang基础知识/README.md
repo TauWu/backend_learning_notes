@@ -12,7 +12,7 @@
 - 4. [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/4_函数.md)
 - 5. [数组与切片](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/5_数组与切片.md)
 - 6. [Map](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/6_Map.md)
-- 7. 结构和方法
+- 7. [结构和方法](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/7_结构和方法.md)
 - 8. 接口和反射
 - 9. 读写数据
 - 10. 错误处理及测试
