@@ -9,14 +9,53 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
 - [ ] 高级语言学习
     - [ ] Python学习
         - [ ] [numpy 笔记](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记)
+            - [ ] [NumPy学习指南](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记/NumPy学习指南)
+                - [x] [numpy基础](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记/NumPy学习指南/Chapter2.py)
+                - [x] [常用函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/numpy笔记/NumPy学习指南/Chapter3.py)
+                - [ ] 便捷函数
+                - [ ] 矩阵和通用函数
+                - [ ] 深入学习numpy模块
+                - [ ] 专用函数
+                - [ ] 质量控制
+                - [ ] Matplotlib绘图
+                - [ ] Scipy
         - [ ] [Python 基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/README.MD)
+            - [x] [数据结构和算法](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/1_datastruct.py)
+            - [x] [字符串和文本](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/2_strings.py)
+            - [x] [数字日期和时间](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/3_nums_datetime.py)
+            - [x] [迭代器与生成器](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/4_iterator_generator.md)
+            - [x] [文件与IO](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/5_file_io.md)
+            - [x] [数据编码和处理](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/6_data_coding.md)
+            - [x] [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/7_function.md)
+            - [ ] [类与对象](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/Python基础知识/8_class_object.md)
+            - [ ] 元编程
+            - [ ] 模块与包
+            - [ ] 网络与web编程
+            - [ ] 并发编程
+            - [ ] 脚本编程与系统管理
+            - [ ] 测试、调试和异常
+            - [ ] C语言扩展
     - [ ] Golang 学习
         - [ ] [Golang 基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/README.md)
+            - [ ] [Code](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/Code)
+            - [x] [基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/1_基础知识.md)
+            - [x] [基本结构和基本数据类型](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/2_基本结构和基本数据类型.md)
+            - [x] [控制结构](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/3_控制结构.md)
+            - [x] [函数](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/4_函数.md)
+            - [x] [数组与切片](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/5_数组与切片.md)
+            - [x] [Map](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/6_Map.md)
+            - [x] [结构和方法](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/7_结构和方法.md)
+            - [x] [接口和反射](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/8_接口和反射.md)
+            - [ ] 读写数据
+            - [ ] 错误处理及测试
+            - [ ] 协程和通道
+            - [ ] Web 开发
+            - [ ] 其它问题
     - [ ] Java学习
         - [ ] [Java 基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Java学习/Java基础知识)
 - [ ] 计算机基础
     - [ ] 计算机组成原理
-    - [ ] 数据结构
+    - [x] 数据结构
         - [x] [绪论](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/绪论.md)
         - [x] [线性表](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/线性表.md)
         - [x] [栈与队列](https://github.com/TauWu/review_note/tree/master/计算机基础/数据结构/笔记/栈与队列.md)
@@ -33,13 +72,21 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
         - [x] [文件管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/文件管理.md)
         - [x] [输入输出（I/O）管理](https://github.com/TauWu/review_note/tree/master/计算机基础/操作系统/笔记/输入输出（IO）管理.md)
     - [ ] 计算机网络
+        - [x] [计算机网络概述](https://github.com/TauWu/review_note/tree/master/计算机基础/计算机网络/计算机网络概述.md)
+        - [x] [数据通信原理](https://github.com/TauWu/review_note/tree/master/计算机基础/计算机网络/数据通信原理.md)
+        - [ ] [计算机网络体系结构和协议](https://github.com/TauWu/review_note/tree/master/计算机基础/计算机网络/计算机网络体系结构和协议.md)
 - [ ] 数学基础
     - [ ] 微积分
     - [ ] 线性代数
     - [ ] 概率论与数理统计
     - [ ] 离散数学
     - [ ] 几何学
+- [ ] [DataMining](https://github.com/TauWu/review_note/tree/master/DataMining)
+    - [ ] [docs](https://github.com/TauWu/review_note/tree/master/DataMining/docs)
+        - [x] [DataMiningConceptsAndTechniques](https://github.com/TauWu/review_note/tree/master/DataMining/docs/DataMiningConceptsAndTechniques.pdf)
+    - [ ] [notes](https://github.com/TauWu/review_note/tree/master/DataMining/notes)
 - [x] issues`实际应用场景中遇到的问题笔记`
     - [x] [prepared_statement的糖和坑](https://github.com/TauWu/review_note/tree/master/issues/数据库/prepared_statement的糖和坑.md)
     - [x] [链家上海Java工程师面经](https://github.com/TauWu/review_note/tree/master/issues/面经/2018年5月29日链家上海Java工程师.md)
 - [ ] [LeetCode](https://github.com/TauWu/review_note/tree/master/LeetCode/README.md)
+    - [ ] [Code](https://github.com/TauWu/review_note/tree/master/LeetCode/Code)
