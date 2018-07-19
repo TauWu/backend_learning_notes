@@ -37,7 +37,7 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
             - [ ] C语言扩展
     - [ ] Golang 学习
         - [ ] [Golang 基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/README.md)
-            - [ ] [Code](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/Code)
+            - [ ] [code](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/Code)
             - [x] [基础知识](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/1_基础知识.md)
             - [x] [基本结构和基本数据类型](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/2_基本结构和基本数据类型.md)
             - [x] [控制结构](https://github.com/TauWu/review_note/tree/master/高级语言学习/Golang学习/Golang基础知识/3_控制结构.md)
