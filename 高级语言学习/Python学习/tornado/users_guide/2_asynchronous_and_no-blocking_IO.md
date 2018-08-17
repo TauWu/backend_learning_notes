@@ -13,7 +13,7 @@ An asynchronous functions returns befaore it is finished, and generally causes s
 - Callback registry (e.g. POSIX signals)
 <p></p>
 
-Regardless of which types of interface is used, asynchronous functions by def interact differently with their callers; **there is no free way to make a synchronous functions asynchronous in a way that is transplant to its callers **(sys like gevent use lightweight threads to offer performance comparable to asynchronous systems, however, they don't actually make things asynchronous).
+Regardless of which types of interface is used, asynchronous functions by def interact differently with their callers; **there is no free way to make a synchronous functions asynchronous in a way that is transplant to its callers**(sys like gevent use lightweight threads to offer performance comparable to asynchronous systems, however, they don't actually make things asynchronous).
 <p></p>
 
 Asynchronous operations in Tornado generally return placeholder objects(Futures), with the exception of some low-level components like the IOLoop that use callbacks. Futures are usually transformed into their result with the `await` or `yield` keyword.
@@ -52,7 +52,7 @@ from tornado import gen
 def async_fetch_gen(url)
     client = AsyncHTTPClient()
     resp = yield client.fetch(url)
-    raise gen.Return(response.bidy)
+    raise gen.Return(resp.body)
 ```
 
 - Manual Use
