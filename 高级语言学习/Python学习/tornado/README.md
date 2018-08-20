@@ -61,3 +61,44 @@ This is a folder about tornado framework DOC, you can [click here](http://www.to
 
 - [ ] Frequently asked questions
 
+## Start to tornado
+
+### hello, world
+Here is a sample web app for Tornado.
+
+```py
+import tornado.ioloop
+import tornado.web
+
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello world!")
+
+def make_app():
+    return tornado.web.Application([
+        (r"/", MainHandler),
+    ])
+
+if __name__ == "__main__":
+    app = make_app()
+    app.listen(8089)
+    tornado.ioloop.IOLoop.Current().Start()
+```
+This sample doesn't use any of Tornado's asynchronous features.
+
+### Threads and WSGI
+Tornado is different from most Python web frameworks. **It isn't based on WSGI**, and it is typically run with only one thread per process. Thus, Tornado is able to asynchronous program.
+<p></p>
+
+However, there is some support of WSGI in `tornado.wsgi` module, it isn't a focus of development and most applications should be written to use Tornado's own interfaces(such as `tornado.web`) directly instead of using WSGI.
+<p></p>
+
+In general, **Tornado code is not thread-safe**. The only method in Tornado that is safe to call from other threads is `IOLoop.add_callback`. You can also use `IOLoop.run_in_executor` to asynchronously run a blocking function on another thread, but note that the function passed to run\_in\_executor should avoid referencing any Tornado objects.
+
+### Installation
+```sh
+pip install tornado
+```
+You are supposed to execute this command with root/Administrator's privileges.
+
+
