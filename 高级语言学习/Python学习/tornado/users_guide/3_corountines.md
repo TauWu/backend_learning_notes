@@ -117,7 +117,7 @@ async def parallel_fetch_many(urls):
     respones = await mutil([http_client.fetch(url) for url in urls])
 ```
 
-In decorated coroutines, ou should use yield in the list or dict.
+In decorated coroutines, you should use yield in the list or dict.
 ```py
 @gen.coroutine
 def parallel_fetch_decorated(url1, url2):
@@ -125,4 +125,57 @@ def parallel_fetch_decorated(url1, url2):
         http_client.fetch(url1),
         http_client.fetch(url2)
     ]
+```
+
+## Interleaving
+Sometimes, it is useful to save a Future object instead of yielding it immediately, so you can start another operation before waiting.
+```py
+from tornado.gen import convert_yielded
+
+async def get(self):
+    # convert_yielded() starts the native coroutine in the background.
+    # This is equivalent to asyncio.ensure_future().
+    fetch_future = convert_yielded(self.fetch_next_chunk())
+    while True:
+        chunk = yield fetch_future
+        if chunk is None: break
+        self.write(chunk)
+        fetch_future = self.fetch_next_chunk()
+        yield self.flush()
+```
+
+## Looping
+In the native coroutines, `async for` can be used. In older version of Python, looping is tricky with coroutines since there is no way to yield on every itreation of a for or while loop and capture the result of the yield. Instead, you'll need to separate the loop condition from accessing the results.
+
+```py
+import motor
+db = motor.MotorClient().test
+
+@gen.coroutine
+def loop_example(collection):
+    cursor = db.connection.find()
+    while (yield cursor.fetch_next()):
+        doc = cursor.next_object()
+```
+
+## Running in the background
+PeriodicCallback is not normally used with coroutines. Instead, a coroutine can contain a `while Ture` loop and use `tornado.gen.sleep`
+
+```py
+async def minute_loop():
+    while True:
+        await do_something()
+        await gen.sleep(60)
+
+# Coroutines that loop forever are generally started with spawn_callback()
+IOLoop.current().spwan_callback(minute_loop)
+```
+A more complicated loop may be descirable. For example, the previous loop runs every 60+X seconds, where X is the running of do\_something(). To run exactly every 60 seconds, you can use the interleaving pattern from above:
+
+```py
+async def minute_loop():
+    while True:
+        nxt = gen.sleep(60)
+        await do_something()
+        await nxt
 ```
