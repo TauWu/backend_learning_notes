@@ -36,7 +36,7 @@ review_note | TauWoo | 2018-05-21 | 基础知识复习笔记
             - [ ] 测试、调试和异常
             - [ ] C语言扩展
         - [ ] Tornado
-            - [ ] User's guide
+            - [x] User's guide
             - [ ] Web framework
             - [ ] HTTP servers and clients
             - [ ] Asynchronous networking
