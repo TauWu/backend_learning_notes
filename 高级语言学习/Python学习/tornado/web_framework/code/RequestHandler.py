@@ -1,16 +1,28 @@
+# 阅读笔记均使用中文记录，以 注释 的格式插入代码
+
+# 线程安全
+# RequestHandler 类中的方法一般而言并不是安全的线程。部分方法比如 写，请求完成，刷新等必须是被主线程调用到。
+# 如果在服务中使用了多线程，必须要使用到回调函数，将请求过程中会用的上面的那些方法的执行交给主线程，或者使用
+# IOLoop.run_in_executor 但需要保证返回值不指向 Tornado 的对象（这点和 Python 中的 asdef 的实现很类似，
+# 可能就是直接打包引用的）
+
 class RequestHandler(object):
     """Base class for HTTP request handlers.
 
     Subclasses must define at least one of the methods defined in the
     "Entry points" section below.
     """
+    # HTTP 请求处理服务的基础类
     SUPPORTED_METHODS = ("GET", "HEAD", "POST", "DELETE", "PATCH", "PUT",
                          "OPTIONS")
 
+    # Tornado 模板管理器 和 锁（防止多线程同时操作）
     _template_loaders = {}  # type: typing.Dict[str, template.BaseLoader]
     _template_loader_lock = threading.Lock()
     _remove_control_chars_regex = re.compile(r"[\x00-\x08\x0e-\x1f]")
 
+    # 构造函数 参数需要一个 Application 一个 Request，其他为可选参数
+    # 一般是继承使用该类，不需要考虑构造
     def __init__(self, application, request, **kwargs):
         super(RequestHandler, self).__init__()
 

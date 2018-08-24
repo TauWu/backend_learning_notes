@@ -2,7 +2,7 @@
 [source](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/source/tornado.web.py)
 
 ## RequestHandler class
-[ChineseNotes](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/web_framework/RequestHandler.py)
+[ChineseNotes](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/web_framework/code/RequestHandler.py)
 
 ## Application class
-[ChineseNotes](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/web_framework/Application.py)
+[ChineseNotes](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/web_framework/code/Application.py)
