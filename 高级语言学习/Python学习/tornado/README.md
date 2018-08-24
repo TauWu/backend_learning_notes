@@ -7,14 +7,14 @@ This is a folder about tornado framework DOC, you can [click here](http://www.to
 
 ## MENU
 
-- [ ] User's guide
-    - [ ] Introduction
-    - [ ] Asynchhronous and non-Blocking I/O
-    - [ ] Queue example - a concurrent web spider
-    - [ ] Structure of a Tornado web application
-    - [ ] Templates and UI
-    - [ ] Authentication and security
-    - [ ] Runing and deploying
+- [x] User's guide
+    - [x] Introduction
+    - [x] Asynchhronous and non-Blocking I/O
+    - [x] Queue example - a concurrent web spider
+    - [x] Structure of a Tornado web application
+    - [x] Templates and UI
+    - [x] Authentication and security
+    - [x] Runing and deploying
 
 - [ ] Web framework
     - [ ] tornado.web - RequestHandler and Application classes
