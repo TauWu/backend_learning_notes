@@ -41,7 +41,7 @@ settings= {
     "login_url":"/login",
     "xsrf_cookies":True,
 }
-application = tornado,web.Application([
+application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/login", LoginHandler),
     (r"/(apple-touch-icon\.jpg)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
