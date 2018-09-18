@@ -5,4 +5,4 @@
 - [The Way to Go](https://github.com/Unknwon/the-way-to-go_ZH_CN)
 
 ## 主目录
-<a href="https://github.com/TauWu/review_note"><button>Back</button></a>
+<a href="https://github.com/TauWu/backend_learning_notes"><button>Back</button></a>
