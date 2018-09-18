@@ -16,4 +16,4 @@ numpy_note | TauWoo | Note | NUMPY模块学习笔记
 - .\docs\Python数据分析基础教程：NumPy学习指南（第2版）
 
 ## MainMenu
-[Back<-](https://github.com/TauWu/review_note)
+[Back<-](https://github.com/TauWu/backend_learning_notes)

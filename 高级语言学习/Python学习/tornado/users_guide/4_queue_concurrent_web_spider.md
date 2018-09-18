@@ -12,4 +12,4 @@ A Queue maintains a count of unfinished tasks, which begins at zero. put increme
 In the web-spider example here, the queue begins containing only base\_url. When a worker fetches a page it parsers the links and puts new ones into the queue, then calls task\_done to decrement the counter one. Eventually, a worker fetches a page whose URLs have all been seen before, and there is also no work left in the queue. Thus, that worker's call to task\_done decrements the counter to zero. The main coroutine, which is waiting for join, is unpauseed and finishes.
 <p></p>
 
-[Click here](https://github.com/TauWu/review_note/tree/master/高级语言学习/Python学习/tornado/users_guide/code/web_spider.py) to read web\_spider.py
+[Click here](https://github.com/TauWu/backend_learning_notes/tree/master/高级语言学习/Python学习/tornado/users_guide/code/web_spider.py) to read web\_spider.py
