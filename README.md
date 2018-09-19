@@ -75,9 +75,9 @@ backend_learning_notes | TauWoo | 2018-05-21 | 后端编程学习笔记
     - [x] [Map](https://github.com/TauWu/backend_learning_notes/tree/master/高级语言学习/Golang学习/Golang基础知识/6_Map.md)
     - [x] [结构和方法](https://github.com/TauWu/backend_learning_notes/tree/master/高级语言学习/Golang学习/Golang基础知识/7_结构和方法.md)
     - [x] [接口和反射](https://github.com/TauWu/backend_learning_notes/tree/master/高级语言学习/Golang学习/Golang基础知识/8_接口和反射.md)
-    - [ ] 读写数据
-    - [ ] 错误处理及测试
-    - [ ] 协程和通道
+    - [x] [读写数据](https://github.com/TauWu/backend_learning_notes/blob/master/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Golang%E5%AD%A6%E4%B9%A0/Golang%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/9_%E8%AF%BB%E5%86%99%E6%95%B0%E6%8D%AE.md)
+    - [x] [错误处理及测试](https://github.com/TauWu/backend_learning_notes/blob/master/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Golang%E5%AD%A6%E4%B9%A0/Golang%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/10_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%8F%8A%E6%B5%8B%E8%AF%95.md)
+    - [x] [协程和通道](https://github.com/TauWu/backend_learning_notes/blob/master/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Golang%E5%AD%A6%E4%B9%A0/Golang%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/11_%E5%8D%8F%E7%A8%8B%E4%B8%8E%E9%80%9A%E9%81%93.md)
     - [ ] Web 开发
     - [ ] 其它问题
 
