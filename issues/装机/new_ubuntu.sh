@@ -19,19 +19,19 @@ sudo apt-get install redis-server
 sudo apt-get install redis-client
 
 ## Coding softwares and tools.
-sudo apt-get install vscode
-sudo apt-get install git
-sudo apt-get install tig
-sudo apt-get install htop
-sudo apt-get install mysql-workbench
-sudo apt-get install redis-desktop-manager
-sudo apt-get install wireshark
-sudo apt-get install postman
-sudo apt-get install charles
-sudo apt-get install remmina
-sudo apt-get install teamviewer
-sudo apt-get install tesseract-ocr
-sudo apt-get install zsh
+sudo apt-get -y install vscode
+sudo apt-get -y install git
+sudo apt-get -y install tig
+sudo apt-get -y install htop
+sudo apt-get -y install mysql-workbench
+sudo apt-get -y install redis-desktop-manager
+sudo apt-get -y install wireshark
+sudo apt-get -y install postman
+sudo apt-get -y install charles
+sudo apt-get -y install remmina
+sudo apt-get -y install teamviewer
+sudo apt-get -y install tesseract-ocr
+sudo apt-get -y install zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 ## Python requirements.
