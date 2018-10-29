@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-const N = 10
+const N = 3
 
-func GeneratorShortList(bigSlice []interface{}) chan []interface{} {
-	ret := make(chan []interface{})
+func GeneratorShortList(bigSlice []int) chan []int {
+	ret := make(chan []int)
 
 	go func() {
 		for i := 0; i < len(bigSlice); i += N {
