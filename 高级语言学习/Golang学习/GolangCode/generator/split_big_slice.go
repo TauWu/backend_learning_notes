@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const N = 3
+const N = 4
 
 func GeneratorShortList(bigSlice []int) chan []int {
 	ret := make(chan []int)
@@ -12,7 +12,7 @@ func GeneratorShortList(bigSlice []int) chan []int {
 			if i+N < len(bigSlice) {
 				ret <- bigSlice[i : i+N]
 			} else {
-				ret <- bigSlice[i : len(bigSlice)-1]
+				ret <- bigSlice[i:]
 			}
 		}
 		close(ret)
