@@ -13,30 +13,43 @@
 # 中位数是 (2 + 3)/2 = 2.5
 
 def find_median_sorted_arrays(nums1, nums2):
-    len1 = len(nums1)
-    len2 = len(nums2)
-    posi_c = (len1 + len2) / 2
-    posi_a = int((posi_c) / 2)
-    posi_b = int((posi_c) / 2)
-    delta = nums1[posi_a] - nums2[posi_b]
-    times = 0
-    while True:
-        times += 1
-        print(times, "**", posi_a, posi_b, '=>',nums1[posi_a] ,nums2[posi_b])
-        if times > 10:
-            break
+    m = len(nums1)
+    n = len(nums2)
 
-        if delta > 0:
-            posi_b += int((posi_a+1) / 2)
-            posi_a -= int((posi_a+1) / 2)
+    if m > n :
+        m, n, nums1, nums2 = n, m, nums2, nums1
+
+    imin, imax, half = 0, m, int((m+n+1)/2)
+
+    while imin <= imax:
+
+        i = int((imin+imax)/2)
+        j = half - i
+
+        if i<n and nums2[j-1] > nums1[i]:
+            print("****", i, imin, imax, nums2[j-1], nums1[i])
+            imin = i + 1
+        elif i<m and nums1[i-1] > nums2[j]:
+            print(">>>>", i, imin, imax, nums1[i-1], nums2[j])
+            imax = i - 1
         else:
-            posi_a += int((posi_b+1) / 2)
-            posi_b -= int((posi_b+1) / 2)
-        
-        if delta < nums1[posi_a] - nums2[posi_b]:
-            return nums1[posi_a] ,nums2[posi_b]
-        else:
-            delta = nums1[posi_a] - nums2[posi_b]
+
+            if i == 0: max_of_left = nums2[j-1]
+            elif j == 0: max_of_left = nums1[i-1]
+            else: max_of_left = max(nums1[i-1], nums2[j-1])
+
+            print(max_of_left)
+
+            if (m+n)%2 == 1:
+                return max_of_left
+
+            if i == m: min_of_right = nums2[j]
+            elif j == n: min_of_right = nums1[j]
+            else: min_of_right = min(nums1[i], nums2[j])
+
+            print(min_of_right)
+            return (max_of_left + min_of_right) / 2.0
 
 if __name__ == "__main__":
-    find_median_sorted_arrays([1,13,31,41,51],[1,2,3,5,6,9,10])
+    res = find_median_sorted_arrays([1,13,31,41,51],[1,2,3,5,6,9,10])
+    print(res)
