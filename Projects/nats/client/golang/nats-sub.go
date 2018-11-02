@@ -36,6 +36,7 @@ func main() {
 	var urls = flag.String("s", nats.DefaultURL, "The nats server URLs (separated by comma)")
 	var showTime = flag.Bool("t", false, "Display timestamps")
 
+	// 参数获取和解析
 	log.SetFlags(0)
 	flag.Usage = usage
 	flag.Parse()
@@ -45,6 +46,7 @@ func main() {
 		usage()
 	}
 
+	// 连接到 Nats Server
 	nc, err := nats.Connect(*urls)
 	if err != nil {
 		log.Fatalf("Can't connect: %v\n", err)
@@ -52,20 +54,26 @@ func main() {
 
 	subj, i := args[0], 0
 
+	// 消息的接收端
 	nc.Subscribe(subj, func(msg *nats.Msg) {
 		i += 1
 		printMsg(msg, i)
 	})
+
+	// 和 Nats Server 之间的通信
 	nc.Flush()
 
+	// 延迟的错误处理
 	if err := nc.LastError(); err != nil {
 		log.Fatal(err)
 	}
 
+	// 这里将会在一开始 print，上面的 Subscribe 中的函数其实相当于启了一个 goroutine
 	log.Printf("Listening on [%s]\n", subj)
 	if *showTime {
 		log.SetFlags(log.LstdFlags)
 	}
 
+	// 类似于 asyncio.run_until_complete() 的一个死循环
 	runtime.Goexit()
 }
