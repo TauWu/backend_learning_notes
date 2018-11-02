@@ -32,6 +32,8 @@ func main() {
 
 	log.SetFlags(0)
 	flag.Usage = usage
+
+	// 解析出 -s 对应的服务器地址信息 和 指定 sub + 发送 msg
 	flag.Parse()
 
 	args := flag.Args()
@@ -39,17 +41,24 @@ func main() {
 		usage()
 	}
 
+	// 连接到 Nats server
 	nc, err := nats.Connect(*urls)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// 延迟关闭 Nats
 	defer nc.Close()
 
 	subj, msg := args[0], []byte(args[1])
 
+	// 发送消息
 	nc.Publish(subj, msg)
+
+	// 接收刚刚发送消息的反馈
 	nc.Flush()
 
+	// 延迟的错误处理
 	if err := nc.LastError(); err != nil {
 		log.Fatal(err)
 	} else {
