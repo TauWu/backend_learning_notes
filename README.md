@@ -63,10 +63,10 @@ backend_learning_notes | TauWoo | 2018-05-21 | 后端编程学习笔记
 
 #### Golang 学习
 
-- [ ] :cookie: [Golang 基础知识](./高级语言学习/Golang学习/Golang基础知识/README.md):email: [The Way to Go](https://zengweigang.gitbooks.io/core-go/content/index.html)
+- [x] :cookie: [Golang 基础知识](./高级语言学习/Golang学习/Golang基础知识/README.md):email: [The Way to Go](https://zengweigang.gitbooks.io/core-go/content/index.html)
     > Go 语言是一门年轻的编译型程序设计语言，相对于 C++ 的繁琐，它的语法更加简洁；相对于 JVM 的臃肿，它对虚拟机的依赖更小；相对于 Python 的缓慢，它作为编译语言可以秒杀一众解释型语言。Go 是一个相对更中规中矩的语言，没有明显的短板，用起来的感受和运行起来的感受都很均衡。同时，Go 也是第一个在语言级别实现协程 (goroutine) 的语言。
     
-    - [ ] [code](./高级语言学习/Golang学习/Golang基础知识/Code)
+    - [x] [code](./高级语言学习/Golang学习/Golang基础知识/Code)
     - [x] [基础知识](./高级语言学习/Golang学习/Golang基础知识/1_基础知识.md)
     - [x] [基本结构和基本数据类型](./高级语言学习/Golang学习/Golang基础知识/2_基本结构和基本数据类型.md)
     - [x] [控制结构](./高级语言学习/Golang学习/Golang基础知识/3_控制结构.md)
@@ -78,8 +78,7 @@ backend_learning_notes | TauWoo | 2018-05-21 | 后端编程学习笔记
     - [x] [读写数据](./高级语言学习/Golang学习/Golang基础知识/9_读写数据.md)
     - [x] [错误处理及测试](./高级语言学习/Golang学习/Golang基础知识/10_错误处理及测试.md)
     - [x] [协程和通道](./高级语言学习/Golang学习/Golang基础知识/11_协程与通道.md)
-    - [ ] Web 开发
-    - [ ] 其它问题
+    - [x] [Web 开发](./高级语言学习/Golang学习/Golang基础知识/12_网络.md)
 
 #### Java学习
 
