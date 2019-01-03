@@ -76,6 +76,7 @@ class RequestHandler(object):
         """An alias for `self.application.settings <Application.settings>`."""
         return self.application.settings
 
+    # 待 override 的一些方法
     def head(self, *args, **kwargs):
         raise HTTPError(405)
 
@@ -97,6 +98,8 @@ class RequestHandler(object):
     def options(self, *args, **kwargs):
         raise HTTPError(405)
 
+    # 在 get/post/etc 之前被调用，一般用来处理一些不区分不同的请求类型的 通用操作
+    # 支持设为异步方法，本方法会等待 Future object 执行完后才会 return
     def prepare(self):
         """Called at the beginning of a request before  `get`/`post`/etc.
 
@@ -114,6 +117,8 @@ class RequestHandler(object):
         """
         pass
 
+    # 在 request 之后被调用
+    # 重写这个方法来执行一些清理工作，由于此时客户端已经接收完毕内容，所以此处不应当再返回数据
     def on_finish(self):
         """Called after the end of a request.
 
@@ -124,6 +129,9 @@ class RequestHandler(object):
         """
         pass
 
+    # 在异步 handler 被客户端断开连接之后调用本方法
+    # 重写本方法来清理长连接的遗留
+    # *代理用户由于代理认证的原因，会一直保持这个 session 直到用户登出，所以如果需要针对每个请求做清理工作，使用 on_finish 方法*
     def on_connection_close(self):
         """Called in async handlers if the client closed the connection.
 
@@ -143,6 +151,7 @@ class RequestHandler(object):
                 self.request.body.set_exception(iostream.StreamClosedError())
                 self.request.body.exception()
 
+    # 重置本次请求的所有 headers 和 Content
     def clear(self):
         """Resets all headers and content for this response."""
         self._headers = httputil.HTTPHeaders({
@@ -155,6 +164,8 @@ class RequestHandler(object):
         self._status_code = 200
         self._reason = httputil.responses[200]
 
+    # 设置默认的 headers
+    # NOTE: 遇到错误的 handler 的时候，可能会将 headers 修改掉
     def set_default_headers(self):
         """Override this to set HTTP headers at the beginning of the request.
 
@@ -165,6 +176,8 @@ class RequestHandler(object):
         """
         pass
 
+    # 设置本次请求的 status_code
+    # 需要设置原因，如果 status_code 有值且在枚举内，可以不写
     def set_status(self, status_code, reason=None):
         """Sets the status code for our response.
 
@@ -184,10 +197,12 @@ class RequestHandler(object):
         else:
             self._reason = httputil.responses.get(status_code, "Unknown")
 
+    # 获取当前请求的 status_code
     def get_status(self):
         """Returns the status code for our response."""
         return self._status_code
 
+    # 修改当前请求的 headers 信息，它应当是一个 dict
     def set_header(self, name, value):
         # type: (str, _HeaderTypes) -> None
         """Sets the given response header name and value.
@@ -198,6 +213,7 @@ class RequestHandler(object):
         """
         self._headers[name] = self._convert_header_value(value)
 
+    # 添加 headers
     def add_header(self, name, value):
         # type: (str, _HeaderTypes) -> None
         """Adds the given response header and value.
@@ -207,6 +223,7 @@ class RequestHandler(object):
         """
         self._headers.add(name, self._convert_header_value(value))
 
+    # 清除 headers 里面的某一项值
     def clear_header(self, name):
         """Clears an outgoing header, undoing a previous `set_header` call.
 
@@ -216,8 +233,11 @@ class RequestHandler(object):
         if name in self._headers:
             del self._headers[name]
 
+    # 非法的 headers 内容，正则里面的内容是 控制字符 
     _INVALID_HEADER_CHAR_RE = re.compile(r"[\x00-\x1f]")
 
+    # 类似于将 interface 的类型进行类型转换，按照函数里面的意思，应当都是 string
+    # bytes 只存在于 py3, unicode_type 只存在于 py2，这里看出解释型语言的特点
     def _convert_header_value(self, value):
         # type: (_HeaderTypes) -> str
 
@@ -248,8 +268,11 @@ class RequestHandler(object):
             raise ValueError("Unsafe header value %r", retval)
         return retval
 
+
+    # 下面都是 **获取参数** 的代码
     _ARG_DEFAULT = object()
 
+    # 通过指定的 name 获取对应的 参数 （get 方法？）
     def get_argument(self, name, default=_ARG_DEFAULT, strip=True):
         """Returns the value of the argument with the given name.
 
@@ -263,6 +286,7 @@ class RequestHandler(object):
         """
         return self._get_argument(name, default, self.request.arguments, strip)
 
+    # 获取指定 name 的一串参数
     def get_arguments(self, name, strip=True):
         """Returns a list of the arguments with the given name.
 
@@ -278,6 +302,7 @@ class RequestHandler(object):
 
         return self._get_arguments(name, self.request.arguments, strip)
 
+    # 获取 body 中的参数 一般是 post 方法中携带
     def get_body_argument(self, name, default=_ARG_DEFAULT, strip=True):
         """Returns the value of the argument with the given name
         from the request body.
@@ -295,6 +320,7 @@ class RequestHandler(object):
         return self._get_argument(name, default, self.request.body_arguments,
                                   strip)
 
+    # 从 body 中获取一列参数
     def get_body_arguments(self, name, strip=True):
         """Returns a list of the body arguments with the given name.
 
@@ -306,6 +332,7 @@ class RequestHandler(object):
         """
         return self._get_arguments(name, self.request.body_arguments, strip)
 
+    # 获取 query 中的参数 一般是 GET 方法中携带
     def get_query_argument(self, name, default=_ARG_DEFAULT, strip=True):
         """Returns the value of the argument with the given name
         from the request query string.
@@ -313,7 +340,7 @@ class RequestHandler(object):
         If default is not provided, the argument is considered to be
         required, and we raise a `MissingArgumentError` if it is missing.
 
-        If the argument appears in the url more than once, we return the
+        * If the argument appears in the url more than once, we return the
         last value.
 
         The returned value is always unicode.
@@ -323,6 +350,7 @@ class RequestHandler(object):
         return self._get_argument(name, default,
                                   self.request.query_arguments, strip)
 
+    # 获取 query 中的参数列表 一般是 GET 方法中携带
     def get_query_arguments(self, name, strip=True):
         """Returns a list of the query arguments with the given name.
 
@@ -334,6 +362,7 @@ class RequestHandler(object):
         """
         return self._get_arguments(name, self.request.query_arguments, strip)
 
+    # 获取参数子方法，获取一个参数其实是用的 _get_arguments 的方法查询到的最后一个参数
     def _get_argument(self, name, default, source, strip=True):
         args = self._get_arguments(name, source, strip=strip)
         if not args:
@@ -342,6 +371,7 @@ class RequestHandler(object):
             return default
         return args[-1]
 
+    # 获取参数列表，解析 request.xxxx_arguments
     def _get_arguments(self, name, source, strip=True):
         values = []
         for v in source.get(name, []):
@@ -355,6 +385,7 @@ class RequestHandler(object):
             values.append(v)
         return values
 
+    # 解码参数 -- 其实就是一个 decode 方法
     def decode_argument(self, value, name=None):
         """Decodes an argument from the request.
 
@@ -374,12 +405,14 @@ class RequestHandler(object):
             raise HTTPError(400, "Invalid unicode in %s: %r" %
                             (name or "url", value[:40]))
 
+    # 返回 request.cookies
     @property
     def cookies(self):
         """An alias for
         `self.request.cookies <.httputil.HTTPServerRequest.cookies>`."""
         return self.request.cookies
 
+    # 通过 name 查询 dict 中的 value 值
     def get_cookie(self, name, default=None):
         """Returns the value of the request cookie with the given name.
 
@@ -393,6 +426,9 @@ class RequestHandler(object):
             return self.request.cookies[name].value
         return default
 
+    # 设置 cookie 
+    # name, value, domain, expires, path, expires_days
+    # 新建的 cookie 无法给 get_cookie 方法查询到，直到下一次请求（如果下次请求携带该 cookie）
     def set_cookie(self, name, value, domain=None, expires=None, path="/",
                    expires_days=None, **kwargs):
         """Sets an outgoing cookie name/value with the given options.
@@ -434,6 +470,7 @@ class RequestHandler(object):
             if k == 'max_age':
                 k = 'max-age'
 
+            # HTTPONLY/ SECURE 的 value 值不能是 None
             # skip falsy values for httponly and secure flags because
             # SimpleCookie sets them regardless
             if k in ['httponly', 'secure'] and not v:
@@ -441,6 +478,8 @@ class RequestHandler(object):
 
             morsel[k] = v
 
+    # 删除 cookie 的值
+    # 内部的主要操作是 value 和 expires 的值更新
     def clear_cookie(self, name, path="/", domain=None):
         """Deletes the cookie with the given name.
 
@@ -472,6 +511,8 @@ class RequestHandler(object):
         for name in self.request.cookies:
             self.clear_cookie(name, path=path, domain=domain)
 
+    # 设置安全的 cookie
+    # 一般是用来登录的 cookie 设置 默认 30 天过期
     def set_secure_cookie(self, name, value, expires_days=30, version=None,
                           **kwargs):
         """Signs and timestamps a cookie so it cannot be forged.
@@ -501,6 +542,7 @@ class RequestHandler(object):
                                                        version=version),
                         expires_days=expires_days, **kwargs)
 
+    # 设置安全 cookie 的子方法，用于通过 name value 生成加密后的 value 值
     def create_signed_value(self, name, value, version=None):
         """Signs and timestamps a string so it cannot be forged.
 
@@ -524,6 +566,7 @@ class RequestHandler(object):
         return create_signed_value(secret, name, value, version=version,
                                    key_version=key_version)
 
+    # 获取安全cookie，此处返回的 byte数组
     def get_secure_cookie(self, name, value=None, max_age_days=31,
                           min_version=None):
         """Returns the given signed cookie if it validates, or None.
@@ -547,6 +590,7 @@ class RequestHandler(object):
                                    name, value, max_age_days=max_age_days,
                                    min_version=min_version)
 
+    # 获取安全 cookie 的版本值
     def get_secure_cookie_key_version(self, name, value=None):
         """Returns the signing key version of the secure cookie.
 
@@ -557,6 +601,8 @@ class RequestHandler(object):
             value = self.get_cookie(name)
         return get_signature_key_version(value)
 
+    # 重定向
+    # permanent 常驻
     def redirect(self, url, permanent=False, status=None):
         """Sends a redirect to the given (optionally relative) URL.
 
@@ -570,11 +616,12 @@ class RequestHandler(object):
         if status is None:
             status = 301 if permanent else 302
         else:
-            assert isinstance(status, int) and 300 <= status <= 399
+            assert isinstance(status, int) and 300 <= status <= 399 # 断言：重定向的必须是 3XX 的
         self.set_status(status)
         self.set_header("Location", utf8(url))
         self.finish()
 
+    # 写操作 将 buffer 写出去到 客户端
     def write(self, chunk):
         """Writes the given chunk to the output buffer.
 
@@ -605,6 +652,7 @@ class RequestHandler(object):
         chunk = utf8(chunk)
         self._write_buffer.append(chunk)
 
+    # render 模板返回 web HTML
     def render(self, template_name, **kwargs):
         """Renders the template with the given arguments as the response.
 
@@ -738,6 +786,7 @@ class RequestHandler(object):
         return b'<style type="text/css">\n' + b'\n'.join(css_embed) + \
                b'\n</style>'
 
+    # 用指定的参数生成 render_string HTML 文件
     def render_string(self, template_name, **kwargs):
         """Generate the given template with the given arguments.
 
