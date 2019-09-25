@@ -100,3 +100,70 @@ def foo(a, b, c, d="default"):
 foo(1, 2, 3)    # 之前使用本函数的地方依然有效，会在使用 d 的地方用到默认值
 foo(1, 2, 3, "test") # 会用 test 覆盖掉默认值，虽然这里可以传 int 类型的 4，但是为了避免读者产生不好的习惯，因此传的字符串
 ```
+
+## 20. 使用 None 和文档字符串来描述具有动态默认值的参数
+
+来看下面一段代码：
+
+```py
+def foo(message, when=datetime.now()):
+    print("%s: %s" % (when, message))
+
+foo("Hi!")
+time.sleep(1)
+foo("Hi again!")
+
+# 2019-9-26 00:20:58.000000: Hi!
+# 2019-9-26 00:20:58.000000: Hi again!
+```
+
+返回的结果跟预期却不一样，在程序 sleep 一秒以后，两次打印的时间确是一样的，这是因为，when=datetime.now() 只在函数定义的时候执行了一次，函数里面参数的默认值，会在 **模块加载的时候运行一次** 后固定。后面的值就固定不变了。想要达到预期效果，需要这样修改代码：
+
+
+```py
+def foo(message, when=None):
+    when = datetime.now() if when is None else when
+    print("%s: %s" % (when, message))
+
+foo("Hi!")
+time.sleep(1)
+foo("Hi again!")
+
+# 2019-9-26 00:20:58.000000: Hi!
+# 2019-9-26 00:20:59.000000: Hi again!
+```
+
+再举一个比较经典的例子：
+
+```py
+def decode_1(data, default={}):
+    try:
+        return json.loads(data)
+    except Exception:
+        return default
+
+data1 = decode_1("test")
+data1["test"] = 1
+data2 = decode_1("newtest")
+data2["newtest"] = 2
+
+print(data1)
+print(data2)
+# {"test":1, "newtest":2}
+# {"test":1, "newtest":2}
+```
+
+默认值只会在加载模块的时候定义一次，所以最终导致的结果是所有以默认形式调用 decode_1 函数的代码都享用同一个 default 的字典，因此最终的值被篡改成意想不到的数值。
+
+如果需要修改，可以参考以下写法：
+
+```py
+def decode(data, default=None):
+    default = {} if default is None else default
+    try:
+        return json.loads(data)
+    except Exception:
+        return default
+```
+
+这个地方也有涉及到局部变量的作用域的问题。不仅是字典，列表也会出现同样的问题。因此对于以动态值作为实际默认值的关键字参数，应该把形式上的参数默认值改为 None，并在函数的文档字符串（注释）中描述该默认值对应的实际行为，并在函数体中对它赋值。
