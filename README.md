@@ -61,6 +61,18 @@ backend_learning_notes | TauWoo | 2018-05-21 | 后端编程学习笔记
     - [ ] Utilities
     - [ ] Frequently asked questions
 
+- [ ] :cookie: [effective-python](./高级语言学习/Python学习/effective-python)
+    > write pythonic code.
+
+    - [ ] pythonic
+    - [ ] function
+    - [ ] class
+    - [ ] metaclass and property
+    - [ ] subprocess
+    - [ ] inner model
+    - [ ] co-coding
+    - [ ] others
+
 #### Golang 学习
 
 - [x] :cookie: [Golang 基础知识](./高级语言学习/Golang学习/Golang基础知识/README.md):email: [The Way to Go](https://zengweigang.gitbooks.io/core-go/content/index.html)
