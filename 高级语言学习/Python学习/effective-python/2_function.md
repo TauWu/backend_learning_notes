@@ -167,3 +167,77 @@ def decode(data, default=None):
 ```
 
 这个地方也有涉及到局部变量的作用域的问题。不仅是字典，列表也会出现同样的问题。因此对于以动态值作为实际默认值的关键字参数，应该把形式上的参数默认值改为 None，并在函数的文档字符串（注释）中描述该默认值对应的实际行为，并在函数体中对它赋值。
+
+
+# 21. 用只能以关键字形式指定的参数来确保代码明晰
+
+函数里面的有些参数希望用户在调用的时候必须用关键字参数调用而不是位置参数，以免在调用的时候产生异议。比如说实现一个安全的除法，要求返回值在 1/0 的时候返回 inf。 正常的实现是：
+
+```py 
+def safe_division(number, divisor, ignore_overflow=True, ignore_zero_division=True):
+    try:
+        return number / divsor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            raise
+
+safe_division(100, 0)
+safe_division(100, 0, ignore_overflow=False)
+safe_division(100, 0, True, False)
+```
+
+以上三种方法都能调用 safe_division 函数，但是第三种调用方式的 True 跟 False 会让读者难以分辨具体的参数内容，那么如何禁用掉第三种用法呢？
+
+Python 3 的实现是：
+
+```py
+def safe_division(number, divisor, *, ignore_overflow=True, ignore_zero_division=True):
+    try:
+        return number / divsor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            raise
+```
+
+其中函数定义里面 divisor 后面的 * 起到限制第三位起的位置参数的使用的作用。
+
+Python 2 的实现是：
+
+```py
+def safe_division(number, divisor, **kwargs):
+
+    ignore_overflow = kwargs.pop("ignore_overflow", True)
+    ignore_zero_division = kwargs.pop("ignore_zero_division", True)
+    if kwargs:
+        raise TypeError("Unexcepted **kwargs: %r" % kwargs)
+
+    try:
+        return number / divsor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            raise
+
+```
+
+Python 2 中不能使用像 Python 3 中单独的 * 来限制位置参数，但是可以用 **kwargs 来获取参数并通过代码实现参数取值和参数限制的功能。
