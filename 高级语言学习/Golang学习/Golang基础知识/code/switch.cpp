@@ -15,13 +15,5 @@ int main() {
         default: cout<<"default case"<<endl;        
     }
 
-    switch(i) {
-        case 4: cout<<"was <= 4"<<endl;break;
-        case 5: cout<<"was <= 5"<<endl;break;
-        case 6: cout<<"was <= 6"<<endl;break;
-        case 7: cout<<"was <= 7"<<endl;break;
-        case 8: cout<<"was <= 8"<<endl;break;
-        default: cout<<"default case"<<endl;        
-    }
     return 0;
 }
