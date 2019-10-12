@@ -19,9 +19,9 @@ Python 中有很多内置的 API，都允许调用者传入函数以定制其行
 
 Python 中的类和方法都可以像一级类一样引用，因此它们和其他类型的对象一样可以放在表达式中。
 
-通过调用名为 __call__ 的方法，可以将类的实例像调用函数一样被调用。
+通过调用名为 `__call__` 的方法，可以将类的实例像调用函数一样被调用。
 
-如果需要用函数来表达状态，可以定义一个新的类，通过实现 __call__ 方法，而不要定义带状态的闭包。
+如果需要用函数来表达状态，可以定义一个新的类，通过实现 `__call__` 方法，而不要定义带状态的闭包。
 
 ```py
 class CountMissing(object):
@@ -49,3 +49,102 @@ assert counter.count == 2
 在 Python 中不仅对象支持多态，类也支持多态。多态使继承体系中的多个类都能以各自所独有的方式来实现某个方法。这些类都满足相同的接口或者继承自相同的抽象类，但是却有着不同的功能。
 
 详情见[代码](./code/3-24.py)
+
+上述代码可能要表达的意思是，使用 classmethod 可以避免初始化类，创造不必要的实例对象。
+
+### 25. 用 super 初始化父类
+
+初始化父类的传统方式，实在子类里面用子类实例直接调用父类的 `__init__` 方法。
+
+```py
+class MyBaseClass(object):
+    def __init__(self, value):
+        self.value = value
+
+class MyChildClass(MyBaseClass):
+    def __init__(self):
+        MyBaseClass.__init__(self, 0)
+```
+
+这种方式对于简单的继承体系中是可行的吗，但是会在很多情况出现问题。
+
+如果子类受到了多重继承的影响，直接调用超类的 `__init__` 方法，会产生无法预知的行为。
+
+在子类调用 `__init__` 的问题之一，是它的调用顺序并不固定。例如：
+
+```py
+class TimesTwo(object):
+    def __init__(self):
+        self.value *= 2
+
+class PlusFive(object):
+    def __init__(self):
+        self.value += 5
+
+class ChildOne(MyBaseClass, TimesTwo, PlusFive):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        TimesTwo.__init__(self)
+        PlusFive.__init__(self)
+
+foo = ChildOne(5)
+print(foo.value) # 15 => 5 * 2 + 5
+
+class ChildTwo(MyBaseClass, PlusFive, TimesTwo):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        TimesTwo.__init__(self)
+        PlusFive.__init__(self)
+
+foo = ChildTwo(5)
+print(foo.value) # 15
+```
+
+由于在 ChildTwo `__init__` 方法中，没有修改超类构造器的调用顺序，所以最终的结果还是 15。
+
+还有一个问题发生在钻石继承中，如果子类继承自两个单独的超类，而那两个超类又继承自同一个公共基类，便构成一个钻石继承体系。这种继承会使钻石顶部的类执行多次 `__init__` 方法，从而产生一些奇怪的问题。
+
+```py
+class TimesFive(MyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value *= 5
+
+class PlusTwo(NyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value += 2
+
+class ChildThree(TimesFive, PlusTwo):
+    def __init__(self, value):
+        TimesFive.__init__(self, value)
+        PlusTwo.__init__(self, value)
+
+foo = ChildThree(5)
+print(foo.value) # 7 => 5 * 5 -> 5 + 2
+```
+
+在 ChildThree 的 `__init__` 方法中执行 `PlusTwo.__init__` 的时候，将里面 value 变量的值重新赋值为 5 了一次。
+
+上述问题解决方法是使用内置的 super 函数，保证钻石顶部的那个公共基类的 `__init__` 方法只被调用一次。
+
+```py
+class TimesFive(MyBaseClass):
+    def __init__(self, value):
+        super(TimesFive, self).__init__(value)
+        self.value *= 5
+
+class PlusTwo(MyBaseClass):
+    def __init__(self, value):
+        super(PlusTwo, self).__init__(value)
+        self.value += 2
+
+class ChildFour(TimesFive, PlusTwo):
+    def __init__(self, value):
+        super().__init__(value)  # 以上两种 Python2 Python3 中都可以有用，但是本行只能在 Python3 中生效。
+
+foo = ChildFour(5)
+print(foo.value)    # 35 => ( 5 + 2 ) * 5 调用栈的顺序是 先入后出。
+```
+
+综上，为了避免会发生钻石继承重复初始化的问题，应该尽量使用 super 函数。
