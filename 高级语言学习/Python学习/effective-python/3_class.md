@@ -32,7 +32,7 @@ class CountMissing(object):
     def __call__(self):
         self.count += 1
         return 0
-        
+
 current = {'green':12, 'blue':3}
 increments = [('red', 1),('blue', 12),('orange', 4)]
 
@@ -43,3 +43,9 @@ for k, amount in increments:
 
 assert counter.count == 2
 ```
+
+### 24. 以 @classmethod 形式的多态去通用地构建对象
+
+在 Python 中不仅对象支持多态，类也支持多态。多态使继承体系中的多个类都能以各自所独有的方式来实现某个方法。这些类都满足相同的接口或者继承自相同的抽象类，但是却有着不同的功能。
+
+详情见[代码](./code/3-24.py)
